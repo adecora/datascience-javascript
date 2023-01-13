@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Exercise 2</title>
+        <script>
+            const countWords = () => {
+                const body = document.querySelector('body');
+                const walk = document.createTreeWalker(body, NodeFilter.SHOW_TEXT, (node) => {
+                    const text = node.textContent;
+                    if (text.trim() === '')
+                        return NodeFilter.FILTER_REJECT;
+                    else
+                        return NodeFilter.FILTER_ACCEPT; 
+                })
+
+                let node;
+                let words = 0;
+                while(node = walk.nextNode()) {
+                    text = node.textContent.trim();
+                    console.log(text.split(/\s+/), text.split(/\s+/).length);
+                    words += text.split(/\s+/).length;
+                }
+                
+                return words;
+            }
+
+            const showWords = (words) => {
+                const p = document.getElementById('wordcount');
+                p.innerHTML = `Count words = ${words}`;
+            }
+
+            document.addEventListener('DOMContentLoaded', (event) => {
+                const words = countWords();
+                console.log(`Count words = ${words}`);
+                showWords(words);
+            });
+        </script>
+    </head>
+    <body>
+        <h1>Exercise 2</h1><h2 id="one">First <em>emphasized</em></h2>
+        <p>stuff</p>
+        <h2 id="two">Second <code>with code</code></h2>
+        <h3>stuff</h3>
+        <h2 id="three">Third</h2>
+        <p>stuff</p>
+        <p id="wordcount"></p>
+    </body>
+</html>

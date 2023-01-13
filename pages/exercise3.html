@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Table of Content</title>
+    </head>
+    <body>
+        <h1>Title</h1>
+        <div id="fill"></div>
+        <h2 id="one">First <em>emphasized <bold>bold</bold></em> <strong>strong</strong></h2>
+        <p>stuff</p>
+        <h2>Second <code>with code</code></h2>
+        <h3>stuff</h3>
+        <h2 id="three">Third</h2>
+        <p>stuff</p>
+
+        <script>
+            (() => {
+                const container = document.getElementById('fill');
+                const headings = Array.from(document.querySelectorAll('h2'));
+                const items = headings
+                    .filter((h) => h.id)
+                    .map((h) => {
+                        const li = document.createElement('li');
+                        const a = document.createElement('a');
+                        a.href = `#${h.id}`;
+                        const walk = document.createTreeWalker(h);
+
+                        let node, parent, lastNode;
+                        while(node = walk.nextNode()) {
+                            if (node.parentNode.nodeName === h.nodeName) 
+                                parent = a;
+                            else
+                                parent = lastNode;
+
+                            if (node.nodeName === '#text')
+                                 parent.appendChild(document.createTextNode(node.textContent));
+                            else {
+                                lastNode = document.createElement(node.nodeName);
+                                parent.appendChild(lastNode);
+                            }
+                        }
+                        li.appendChild(a);
+                        return li;
+                    })
+                
+                const ul = document.createElement('ul');
+                items.forEach((item) => ul.appendChild(item));
+                container.appendChild(ul);
+            })();
+        </script>
+</body>
+</html>
