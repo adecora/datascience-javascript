@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Exercise 1</title>
+        <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+        <script src="https://unpkg.com/babel-standalone@6/babel.js"></script>
+        <script src="./programmers.js"></script>
+    </head>
+    <body>
+        <h1>Exercise 1</h1>
+        <div id="app"></div>
+        <hr />
+        <div id="app">
+            <!-- With document.getElementById('app') just first element found is selected -->
+        </div>
+        <script type="text/babel">
+            const ListElement = ({even, name: {firstName: first, lastName: last}}) => {
+                return (
+                    <div>
+                        {even
+                            ? <li id={`${first}:${last}`}>{first}, {last}</li>
+                            : <li id={`${first}:${last}`}><em>{first}, {last}</em></li>
+                        }
+                    </div>
+                );
+            }
+
+            const root = ReactDOM.createRoot(document.getElementById('app'));
+            root.render(
+                <ul>{programmers.map((programmer, idx) => <ListElement even={idx % 2 === 0} name={programmer} />)}</ul>
+            );
+        </script> 
+    </body>
+</html>
