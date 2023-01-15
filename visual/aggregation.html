@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Embedding Vega-Lite</title>
+        <script src="https://cdn.jsdelivr.net/npm/vega@5.0.0/build/vega.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vega-lite@3"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vega-embed@4"></script>
+    </head>
+    <body>
+        <h1>Embedding Vega-Lite</h1>
+        <div id="vis"></div>
+        <script type="text/javascript">
+            let spec = {
+                "$schema": "https://vega.github.io/schema/vega-lite/v2.0.json",
+                "description": "Specify an aggregation function.",
+                "data": {
+                    "values": [  
+                        {"a": "P", "b": 19},
+                        {"a": "P", "b": 28},
+                        {"a": "P", "b": 91},
+                        {"a": "Q", "b": 55},
+                        {"a": "Q", "b": 81},
+                        {"a": "Q", "b": 87},
+                        {"a": "R", "b": 43},
+                        {"a": "R", "b": 52},
+                        {"a": "R", "b": 53}
+                    ]
+                },
+                "mark": "point",
+                "encoding": {
+                    "x": {"field": "a", "type": "nominal"},
+                    "y": {"field": "b", "type": "quantitative", "aggregate": "average"}
+                }
+            }
+
+            let options = {
+                "actions": {
+                    "export": false,
+                    "source": false,
+                    "editor": false
+                }
+            }
+
+            vegaEmbed("#vis", spec, options);
+
+        </script>
+    </body>
+</html>

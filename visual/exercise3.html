@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Exercise 3</title>
+        <script src="https://cdn.jsdelivr.net/npm/d3-array@3"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vega@5.22.1/build/vega.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.6.0/build/vega-lite.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.21.0/build/vega-embed.min.js"></script>
+    </head>
+    <body>
+        <h1>Exercise 3</h1>
+        <div id="vis"></div>
+        <script type="text/javascript">
+           const randomArray = Array.from({length: 1000}).map(() => Math.floor(Math.random() * 200));
+            // mean, standard deviation, and quartiles
+            const mean = d3.mean(randomArray);
+            const deviation = d3.deviation(randomArray);
+            const quartiles = [
+                d3.quantile(randomArray, 0.25),
+                d3.quantile(randomArray, 0.5),
+                d3.quantile(randomArray, 0.75)
+            ]
+            const histogram = d3.bin()(randomArray);
+
+            console.table({
+                mean,
+                deviation,
+                quartiles: quartiles.map((q, idx) => `"Q${idx + 1}": ${q}`).join(', ')
+            });
+            console.log(histogram);
+
+            const spec = {
+                "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+                "data": {
+                    "values": histogram.map(arr => ({
+                        "bin_start": d3.min(arr),
+                        "bin_end": d3.max(arr),
+                        "count": arr.length
+                    })) 
+                },
+                "mark": "bar",
+                "encoding": {
+                    "x": {
+                        "field": "bin_start",
+                        "bin": {
+                            "binned": true, 
+                            "step": 
+                                Math.ceil(d3.mean(histogram.map((arr) => d3.max(arr) - d3.min(arr)))) + 1
+                        }
+                    },
+                    "x2": {"field": "bin_end"},
+                    "y": {
+                        "field": "count",
+                        "type": "quantitative"
+                    }
+                }
+            }
+            
+            let options = {
+                "actions": {
+                    "export": false,
+                    "source": false,
+                    "editor": false
+                }
+            }
+
+            vegaEmbed("#vis", spec, options);
+        </script>
+    </body>
+</html>

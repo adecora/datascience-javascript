@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Exercise 2</title>
+        <script src="https://cdn.jsdelivr.net/npm/vega@5.22.1/build/vega.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.6.0/build/vega-lite.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.21.0/build/vega-embed.min.js"></script>
+    </head>
+    <body>
+        <h1>Exercise 2</h1>
+        <div id="vis"></div>
+        <script type="text/javascript">
+            let spec = {
+                "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+                "description": "Add mark and encoding for data",
+                "data": {
+                    "values": [
+                        {"a": "A", "group": "x", "b": 28},
+                        {"a": "A", "group": "y", "b": 55},
+                        {"a": "A", "group": "z", "b": 43},
+                        {"a": "B", "group": "x", "b": 91},
+                        {"a": "B", "group": "y", "b": 81},
+                        {"a": "B", "group": "z", "b": 53},
+                        {"a": "C", "group": "x", "b": 19},
+                        {"a": "C", "group": "y", "b": 87},
+                        {"a": "C", "group": "z", "b": 52}
+                    ]
+                },
+                "mark": "bar",
+                "encoding": {
+                    "x": {"field": "a", "type": "nominal" },
+                    "y": {"field": "b", "type": "quantitative"},
+                    "xOffset": {"field": "group"},
+                    "color": {"field": "group"}
+                }
+            }
+
+            // Disable control links
+            let options = {
+                "actions": {
+                    "export": false,
+                    "source": false,
+                    "editor": false
+                }
+            }
+
+            vegaEmbed("#vis", spec, options);
+
+        </script>
+    </body>
+</html>
