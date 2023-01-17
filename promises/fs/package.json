@@ -1,0 +1,17 @@
+{
+  "name": "fs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "file-stats.js",
+  "scripts": {
+    "start": "node file-stats.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "fs-extra": "^11.1.0",
+    "glob-promise": "^6.0.1"
+  }
+}
