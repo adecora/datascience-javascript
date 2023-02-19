@@ -4,6 +4,7 @@
 
 # parcel bundler folders
 **/.cache
+**/.parcel-cache
 **/dist 
 
 # extra resources

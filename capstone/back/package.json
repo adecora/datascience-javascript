@@ -1,0 +1,25 @@
+{
+  "name": "capstone",
+  "version": "1.0.0",
+  "description": "",
+  "main": "driver-0.js",
+  "scripts": {
+    "dev": "nodemon driver-0.js",
+    "start": "node driver-0.js",
+    "test": "mocha"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "data-forge": "^1.9.6",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "assert": "^2.0.0",
+    "mocha": "^10.2.0",
+    "nodemon": "^2.0.20",
+    "supertest": "^6.3.3"
+  }
+}
