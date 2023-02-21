@@ -9,3 +9,6 @@
 
 # extra resources
 **/assets
+
+# Sqlite3 database files
+**/*.db

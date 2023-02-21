@@ -1,0 +1,19 @@
+{
+  "name": "database",
+  "version": "1.0.0",
+  "description": "",
+  "main": "database-initial.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "sqlite3": "^5.1.4"
+  },
+  "devDependencies": {
+    "assert": "^2.0.0",
+    "mocha": "^10.2.0"
+  }
+}
