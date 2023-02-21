@@ -1,5 +1,5 @@
 describe('first test', () => {
-  it('should run without errors', (donde) => {
-    donde();
+  it('should run without errors', (done) => {
+    done();
   })
 })
